@@ -18,18 +18,22 @@
     if(loading){
       return;
     }
-    loading = true;
-    page++;
-    new Ajax.Updater('assets', window.location.href + '?page=' + page, {
-      method: 'get', 
-      insertion: 'bottom',
-      onSuccess: function(xhr){
-        loading = false;
-        if(xhr.responseText.strip() != ""){
-          pager();
+    // uncomment this test to load on scroll
+    // if(near_bottom()){
+      loading = true;
+      page++;
+      new Ajax.Updater('assets', window.location.href + '?page=' + page, {
+        method: 'get', 
+        insertion: 'bottom',
+        onSuccess: function(xhr){
+          loading = false;
+          // comment out this tail-call to load on scroll only
+          if(xhr.responseText.strip() != ""){
+            pager();
+          }
         }
-      }
-    });
+      });
+    // }
   };
   Event.observe(window, 'load', pager)
 </script>
