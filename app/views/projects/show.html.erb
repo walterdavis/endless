@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+<ul id="assets">
+  <%= render @assets %>
+</ul>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+<script type="text/javascript">
+  var loading = false, page = 1;
+  var near_bottom = function(){
+    return document.viewport.getScrollOffsets()['top'] > (document.body.scrollHeight - document.viewport.getHeight() - 200);
+  }
+  var pager = function(evt){
+    if(loading){
+      return;
+    }
+    loading = true;
+    page++;
+    new Ajax.Updater('assets', window.location.href + '?page=' + page, {
+      method: 'get', 
+      insertion: 'bottom',
+      onSuccess: function(xhr){
+        loading = false;
+        if(xhr.responseText.strip() != ""){
+          pager();
+        }
+      }
+    });
+  };
+  Event.observe(window, 'load', pager)
+</script>

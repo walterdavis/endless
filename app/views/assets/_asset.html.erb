@@ -1,0 +1,5 @@
+<li id="<%= dom_id(asset) %>">
+  <%= asset.name %>
+  <%= version_picker asset, asset.version %>
+  <%= link_to 'x', asset, method: 'delete', remote: true %>
+</li>
