@@ -15,4 +15,4 @@ Demonstrates a combination of paging and lazy-loading to show ~20K versioned obj
 * Terminal: `rake db:migrate`
 * Terminal: `rake db:seed`
 * Terminal: `rails server`
-* Visit: <localhost:3000/>
+* Visit: <http://localhost:3000/>
